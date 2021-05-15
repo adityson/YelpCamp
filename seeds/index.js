@@ -21,9 +21,13 @@ const seedDB = async() => {
     await Campground.deleteMany({});
     for(let i=0; i<50; i++){
         const randTh = Math.floor(Math.random() * 1000);
+        const price = Math.floor(Math.random()*20) + 10;
         const camp = new Campground({
             title: `${getTitle(descriptors)} ${getTitle(places)}`,
-            location: `${cities[randTh].city}, ${cities[randTh].state}`
+            location: `${cities[randTh].city}, ${cities[randTh].state}`,
+            image: 'https://source.unsplash.com/collection/483251/',
+            price: price,
+            description: 'Hello from the campground. It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using content here, content here, making it look like readable English.'
         })
         await camp.save();
     }
