@@ -12,13 +12,13 @@ module.exports.registerUser = async(req,res) => {
         req.login(regUser, err => {
             if(err) return next(err);
             req.flash('success', 'Welcome to YelpCamp!');
-            res.redirect('/campgrounds');
+            return res.redirect('/campgrounds');
         })
         req.flash('success', 'Welcome to Yelpcamp');
         res.redirect('/campgrounds');
     } catch(e){
         req.flash('error', e.message);
-        res.redirect('register');
+        res.redirect('/register');
     }
 }
 
