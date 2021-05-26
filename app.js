@@ -14,6 +14,9 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
+
 const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/users');
@@ -41,9 +44,16 @@ app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname,'public')))
 
+app.use(mongoSanitize({
+    replaceWith: '_'
+}));
+
 const sessionConfig = {
-    secret: 'this is a big secret',
+    name: 'session',
+    secret: 'thisisabigsecret',
     resave: false,
+    httpOnly: true,
+    //secure: true,
     saveUninitialized:  true,
     cookie: {
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
@@ -53,6 +63,7 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 app.use(flash());
+app.use(helmet({ contentSecurityPolicy: false }));
 
 app.use(passport.initialize());
 app.use(passport.session());
