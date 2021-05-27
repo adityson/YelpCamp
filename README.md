@@ -3,7 +3,7 @@
 ### Completed this website project under Colt Steele's Web Developer Bootcamp.
 
 #### Tech Stack:
-* HTML5
+* HTML5 & EJS
 * CSS & Bootstrap v5
 * Node.js
 * Express
