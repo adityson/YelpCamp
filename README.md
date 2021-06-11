@@ -17,4 +17,4 @@
 * Integration with Mapbox to render map with the location of the campgrounds.
 * Integration with Cloudinary to store and serve images of campgrounds.
 
-##### [Link to Project](https://morning-harbor-26887.herokuapp.com/)
+##### [Link to Live Hosting](https://morning-harbor-26887.herokuapp.com/)
